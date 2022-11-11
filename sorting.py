@@ -1,6 +1,9 @@
-
+import random
 """Сортировка!"""
-def bubblesort(array):
+
+
+def bubble_sort(array):
+    """Сортировка пузырьком"""
     N = len(array)
     for i in range(N - 1):
         for j in range(N - 1 - i):
@@ -8,9 +11,12 @@ def bubblesort(array):
                 array[j], array[j + 1] = array[j + 1], array[j]
     return array
 
-print(bubblesort(array=[1, 2, 3, 10, 8, 7, 5, 2]))
 
-def insertsort(array):
+print(bubble_sort(array=[1, 2, 3, 10, 8, 7, 5, 2]))
+
+
+def insert_sort(array):
+    """Сортировка вставкой"""
     N = len(array)
     for i in range(1, N):
         for j in range(i, 0, -1):
@@ -19,9 +25,13 @@ def insertsort(array):
             else:
                 break
     return array
-print(insertsort(array=[2, 10, 6, 5, 1, 3, 4]))
 
-def selectionsort(array):
+
+print(insert_sort(array=[2, 10, 6, 5, 1, 3, 4]))
+
+
+def selection_sort(array):
+    """Сортировка выборкой"""
     N = len(array)
     for i in range(N - 1):
         m = array[i]
@@ -36,7 +46,9 @@ def selectionsort(array):
             array[p] = t
     return array
 
-print(selectionsort(array=[3, 5, 1, 8]))
+
+print(selection_sort(array=[3, 5, 1, 8]))
+
 
 def merge_lists(array_1, array_2):
     result_list = []
@@ -54,21 +66,24 @@ def merge_lists(array_1, array_2):
     result_list += array_1[i:] + array_2[j:]
     return result_list
 
-def split_merge_lists(array):
+
+def split_merge_lists_sort(array):
+    """Сортировка слиянием"""
     N1 = len(array) // 2
     array1 = array[:N1]
     array2 = array[N1:]
     if len(array1) > 1:
-        array1 = split_merge_lists(array1)
+        array1 = split_merge_lists_sort(array1)
     if len(array2) > 1:
-        array2 = split_merge_lists(array2)
+        array2 = split_merge_lists_sort(array2)
     return merge_lists(array1, array2)
 
-print(split_merge_lists(array=[1, 2, 3, 10, 11, -7, -5, 4, -11]))
-import random
+
+print(split_merge_lists_sort(array=[1, 2, 3, 10, 11, -7, -5, 4, -11]))
 
 
 def quick_sort(array):
+    """Быстрая сортровка"""
     if len(array) > 1:
         x = array[random.randint(0, len(array) - 1)]
         low = [i for i in array if i < x]
@@ -77,8 +92,5 @@ def quick_sort(array):
         array = quick_sort(low) + quick_sort(eq) + quick_sort(high)
     return array
 
+
 print(quick_sort(array=[1, 2, 3, 10, 11, -7, -5, 4, -11]))
-
-
-
-
